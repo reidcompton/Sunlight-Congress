@@ -41,18 +41,18 @@ namespace Congress
         public int? Count { get; set; }
     }
 
-    public enum Operator
+    public class Operator
     {
-        GreaterThan,
-        GreaterThanOrEquals,
-        LessThan,
-        LessThanOrEquals,
-        Not,
-        All,
-        In,
-        NotIn,
-        Exists,
-        NotExists
+        public static string GreaterThan = "GreaterThan";
+        public static string GreaterThanOrEquals = "GreaterThanOrEquals";
+        public static string LessThan = "LessThan";
+        public static string LessThanOrEquals = "LessThanOrEquals";
+        public static string Not = "Not";
+        public static string All = "All";
+        public static string In = "In";
+        public static string NotIn = "NotIn";
+        public static string Exists = "Exists";
+        public static string NotExists = "NotExists";
     }
 
     public class Filter<T>
@@ -74,76 +74,76 @@ namespace Congress
     {
         public DateFilter(DateTime value) { Values = new DateTime[] { new DateTime(value.Ticks) }; }
         public DateFilter(DateTime[] values) { Values = values; }
-        public DateFilter(DateTime value, Operator @operator)
+        public DateFilter(DateTime value, string @operator)
         {
             Values = new DateTime[] { new DateTime(value.Ticks) };
             switch (@operator)
             {
-                case Operator.GreaterThan:
+                case "GreaterThan":
                     GreaterThan = true;
                     break;
-                case Operator.GreaterThanOrEquals:
+                case "GreaterThanOrEquals":
                     GreaterThanOrEquals = true;
                     break;
-                case Operator.LessThan:
+                case "LessThan":
                     LessThan = true;
                     break;
-                case Operator.LessThanOrEquals:
+                case "LessThanOrEquals":
                     LessThanOrEquals = true;
                     break;
-                case Operator.Not:
+                case "Not":
                     Not = true;
                     break;
-                case Operator.All:
+                case "All":
                     All = true;
                     break;
-                case Operator.In:
+                case "In":
                     In = true;
                     break;
-                case Operator.NotIn:
+                case "NotIn":
                     NotIn = true;
                     break;
-                case Operator.Exists:
+                case "Exists":
                     Exists = true;
                     break;
-                case Operator.NotExists:
+                case "NotExists":
                     Exists = false;
                     break;
             }
         }
-        public DateFilter(DateTime[] values, Operator @operator)
+        public DateFilter(DateTime[] values, string @operator)
         {
             Values = values;
-            switch(@operator)
+            switch (@operator)
             {
-                case Operator.GreaterThan:
+                case "GreaterThan":
                     GreaterThan = true;
                     break;
-                case Operator.GreaterThanOrEquals:
+                case "GreaterThanOrEquals":
                     GreaterThanOrEquals = true;
                     break;
-                case Operator.LessThan:
+                case "LessThan":
                     LessThan = true;
                     break;
-                case Operator.LessThanOrEquals:
+                case "LessThanOrEquals":
                     LessThanOrEquals = true;
                     break;
-                case Operator.Not:
+                case "Not":
                     Not = true;
                     break;
-                case Operator.All:
+                case "All":
                     All = true;
                     break;
-                case Operator.In:
+                case "In":
                     In = true;
                     break;
-                case Operator.NotIn:
+                case "NotIn":
                     NotIn = true;
                     break;
-                case Operator.Exists:
+                case "Exists":
                     Exists = true;
                     break;
-                case Operator.NotExists:
+                case "NotExists":
                     Exists = false;
                     break;
             }
@@ -154,132 +154,156 @@ namespace Congress
     {
         public IntFilter(int value) { Values = new int[] { value }; }
         public IntFilter(int[] values) { Values = values; }
-        public IntFilter(int value, Operator @operator)
+        public IntFilter(int value, string @operator)
         {
             Values = new int[] { value };
             switch (@operator)
             {
-                case Operator.GreaterThan:
+                case "GreaterThan":
                     GreaterThan = true;
                     break;
-                case Operator.GreaterThanOrEquals:
+                case "GreaterThanOrEquals":
                     GreaterThanOrEquals = true;
                     break;
-                case Operator.LessThan:
+                case "LessThan":
                     LessThan = true;
                     break;
-                case Operator.LessThanOrEquals:
+                case "LessThanOrEquals":
                     LessThanOrEquals = true;
                     break;
-                case Operator.Not:
+                case "Not":
                     Not = true;
                     break;
-                case Operator.All:
+                case "All":
                     All = true;
                     break;
-                case Operator.In:
+                case "In":
                     In = true;
                     break;
-                case Operator.NotIn:
+                case "NotIn":
                     NotIn = true;
                     break;
-                case Operator.Exists:
+                case "Exists":
                     Exists = true;
                     break;
-                case Operator.NotExists:
+                case "NotExists":
                     Exists = false;
                     break;
             }
         }
-        public IntFilter(int[] values, Operator @operator)
+        public IntFilter(int[] values, string @operator)
         {
             Values = values;
             switch (@operator)
             {
-                case Operator.GreaterThan:
+                case "GreaterThan":
                     GreaterThan = true;
                     break;
-                case Operator.GreaterThanOrEquals:
+                case "GreaterThanOrEquals":
                     GreaterThanOrEquals = true;
                     break;
-                case Operator.LessThan:
+                case "LessThan":
                     LessThan = true;
                     break;
-                case Operator.LessThanOrEquals:
+                case "LessThanOrEquals":
                     LessThanOrEquals = true;
                     break;
-                case Operator.Not:
+                case "Not":
                     Not = true;
                     break;
-                case Operator.All:
+                case "All":
                     All = true;
                     break;
-                case Operator.In:
+                case "In":
                     In = true;
                     break;
-                case Operator.NotIn:
+                case "NotIn":
                     NotIn = true;
                     break;
-                case Operator.Exists:
+                case "Exists":
                     Exists = true;
                     break;
-                case Operator.NotExists:
+                case "NotExists":
                     Exists = false;
                     break;
             }
-        }        
+        }
     }
 
     public class StringFilter : Filter<string>
     {
         public StringFilter(string value) { Values = new string[] { value }; }
         public StringFilter(string[] values) { Values = values; }
-        public StringFilter(string value, Operator @operator)
+        public StringFilter(string value, string @operator)
         {
             Values = new string[] { value };
             switch (@operator)
             {
-                case Operator.Not:
+                case "GreaterThan":
+                    GreaterThan = true;
+                    break;
+                case "GreaterThanOrEquals":
+                    GreaterThanOrEquals = true;
+                    break;
+                case "LessThan":
+                    LessThan = true;
+                    break;
+                case "LessThanOrEquals":
+                    LessThanOrEquals = true;
+                    break;
+                case "Not":
                     Not = true;
                     break;
-                case Operator.All:
+                case "All":
                     All = true;
                     break;
-                case Operator.In:
+                case "In":
                     In = true;
                     break;
-                case Operator.NotIn:
+                case "NotIn":
                     NotIn = true;
                     break;
-                case Operator.Exists:
+                case "Exists":
                     Exists = true;
                     break;
-                case Operator.NotExists:
+                case "NotExists":
                     Exists = false;
                     break;
             }
         }
-        public StringFilter(string[] values, Operator @operator)
+        public StringFilter(string[] values, string @operator)
         {
             Values = values;
             switch (@operator)
             {
-                case Operator.Not:
+                case "GreaterThan":
+                    GreaterThan = true;
+                    break;
+                case "GreaterThanOrEquals":
+                    GreaterThanOrEquals = true;
+                    break;
+                case "LessThan":
+                    LessThan = true;
+                    break;
+                case "LessThanOrEquals":
+                    LessThanOrEquals = true;
+                    break;
+                case "Not":
                     Not = true;
                     break;
-                case Operator.All:
+                case "All":
                     All = true;
                     break;
-                case Operator.In:
+                case "In":
                     In = true;
                     break;
-                case Operator.NotIn:
+                case "NotIn":
                     NotIn = true;
                     break;
-                case Operator.Exists:
+                case "Exists":
                     Exists = true;
                     break;
-                case Operator.NotExists:
+                case "NotExists":
                     Exists = false;
                     break;
             }
