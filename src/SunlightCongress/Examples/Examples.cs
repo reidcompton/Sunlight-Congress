@@ -127,6 +127,10 @@ namespace Congress
                 VoteSmartId = new IntFilter(128760)
             }).ToArray();
 
+            Bill[] bills = Bill.Search(new FilterBy.Bill() {
+                SponsorId = new StringFilter(s[0].BioguideID)
+            }).ToArray();
+
             // Nomination All
             Nomination[] t = Nomination.All().ToArray();
 

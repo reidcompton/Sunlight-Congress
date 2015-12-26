@@ -57,33 +57,11 @@ namespace Congress
                 StringFilter castVal = value as StringFilter;
                 if (castVal.Values != null)
                 {
-                    if (castVal.GreaterThan == true)
-                        originalKey += "__gt=";
-                    else if (castVal.GreaterThanOrEquals == true)
-                        originalKey += "__gte=";
-                    else if (castVal.LessThan == true)
-                        originalKey += "__lt=";
-                    else if (castVal.LessThanOrEquals == true)
-                        originalKey += "__lte=";
-                    if (castVal.All == true)
-                        originalKey += "__all=";
-                    else if (castVal.In == true)
-                        originalKey += "__in=";
-                    else if (castVal.Not == true)
-                        originalKey += "__not=";
-                    else if (castVal.NotIn == true)
-                        originalKey += "__nin=";
-                    else if (castVal.Exists == true)
-                        originalKey += "__exists=true";
-                    else if (castVal.Exists == false)
-                        originalKey += "__exists=false";
+                    if (!string.IsNullOrEmpty(castVal.Operator))
+                        originalKey += string.Format("__{0}", castVal.Operator);
                     else
                         originalKey += "=";
-                    if (castVal.Values.Length > 1)
-                        foreach (string val in castVal.Values)
-                            originalKey += ConvertToSafeString(val) + "|";
-                    else
-                        originalKey += ConvertToSafeString(castVal.Values[0]);
+                    originalKey += ConvertToSafeString(string.Join("|", castVal.Values));
                 }
             }
             else if (value.GetType() == typeof(DateFilter))
@@ -91,33 +69,11 @@ namespace Congress
                 DateFilter castVal = value as DateFilter;
                 if (castVal.Values != null)
                 {
-                    if (castVal.GreaterThan == true)
-                        originalKey += "__gt=";
-                    else if (castVal.GreaterThanOrEquals == true)
-                        originalKey += "__gte=";
-                    else if (castVal.LessThan == true)
-                        originalKey += "__lt=";
-                    else if (castVal.LessThanOrEquals == true)
-                        originalKey += "__lte=";
-                    else if (castVal.All == true)
-                        originalKey += "__all=";
-                    else if (castVal.In == true)
-                        originalKey += "__in=";
-                    else if (castVal.Not == true)
-                        originalKey += "__not=";
-                    else if (castVal.NotIn == true)
-                        originalKey += "__nin=";
-                    else if (castVal.Exists == true)
-                        originalKey += "__exists=true";
-                    else if (castVal.Exists == false)
-                        originalKey += "__exists=false";
+                    if (!string.IsNullOrEmpty(castVal.Operator))
+                        originalKey += string.Format("__{0}", castVal.Operator);
                     else
                         originalKey += "=";
-                    if (castVal.Values.Length > 1)
-                        foreach (DateTime val in castVal.Values)
-                            originalKey += ConvertToSafeString(val) + "|";
-                    else
-                        originalKey += ConvertToSafeString(castVal.Values[0]);
+                    originalKey += ConvertToSafeString(string.Join("|", castVal.Values));
                 }
 
             }
@@ -126,33 +82,11 @@ namespace Congress
                 IntFilter castVal = value as IntFilter;
                 if (castVal.Values != null)
                 {
-                    if (castVal.GreaterThan == true)
-                        originalKey += "__gt=";
-                    else if (castVal.GreaterThanOrEquals == true)
-                        originalKey += "__gte=";
-                    else if (castVal.LessThan == true)
-                        originalKey += "__lt=";
-                    else if (castVal.LessThanOrEquals == true)
-                        originalKey += "__lte=";
-                    else if (castVal.All == true)
-                        originalKey += "__all=";
-                    else if (castVal.In == true)
-                        originalKey += "__in=";
-                    else if (castVal.Not == true)
-                        originalKey += "__not=";
-                    else if (castVal.NotIn == true)
-                        originalKey += "__nin=";
-                    else if (castVal.Exists == true)
-                        originalKey += "__exists=true";
-                    else if (castVal.Exists == false)
-                        originalKey += "__exists=false";
+                    if (!string.IsNullOrEmpty(castVal.Operator))
+                        originalKey += string.Format("__{0}", castVal.Operator);
                     else
                         originalKey += "=";
-                    if (castVal.Values.Length > 1)
-                        foreach (int val in castVal.Values)
-                            originalKey += ConvertToSafeString(val) + "|";
-                    else
-                        originalKey += ConvertToSafeString(castVal.Values[0]);
+                    originalKey += ConvertToSafeString(string.Join("|", castVal.Values));
                 }
             }
 
