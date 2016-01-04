@@ -65,4 +65,28 @@
     - `All()`
     - `Search(FilterBy.UpcomingBill args)`
       - Accepts FilterBy.UpcomingBill object as parameter. Populate the fields you want to filter on.
-      
+
+##### Namespaces
+  - Congress
+    - This namespace holds all of the classes that receive data from the API
+  - Congress.FilterBy
+    - This namespace holds all of the classes that send data to the API. These are used exclusively in `Search()` methods
+
+
+##### Filters
+  - API fields that are of type int, string, or DateTime are stored as `IntFilter`, `StringFilter` and `DateFilter` respectively in the Congress.FilterBy namespace. For requests, you will use these, and it will allow you to optionally pass in Operators to refine your search.
+- IntFilter(int, Operator)
+- StringFilter(string, Operator)
+- DateFilter(DateTime, Operator)
+
+##### Operators
+- GreaterThan
+- GreaterThanOrEquals
+- LessThan
+- LessThanOrEquals
+- Not
+- All
+- In
+- NotIn
+- Exists
+- NotExists
