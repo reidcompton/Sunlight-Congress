@@ -1,17 +1,12 @@
 ﻿namespace Congress
 {
-    public class Settings
+    internal class Settings
     {
-        public static string Token
-        {
-            get { return "d50b80bc9cfe43be821059b6470e4ab9"; }
-        }
-
         public static string BaseUrl
         {
             get { return "https://congress.api.sunlightfoundation.com"; }
         }
-        
+
         public static string LegislatorsUrl
         {
             get { return string.Concat(BaseUrl, "/legislators"); }

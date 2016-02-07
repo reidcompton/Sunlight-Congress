@@ -1,17 +1,26 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
+using System.Linq.Expressions;
 
 namespace Congress
 {
-    public class FloorUpdateWrapper : BasicReponse
+    public class FloorUpdates : SunlightData<FloorUpdate>
     {
-        [JsonProperty("results")]
-        public List<FloorUpdate> Results { get; set; }
+        public FloorUpdates(string apiKey) : base(apiKey)
+        {
+            _apiKey = apiKey;
+        }
+        public FloorUpdates(string apiKey, Expression expression) : base(apiKey, expression)
+        {
+            _apiKey = apiKey;
+            _expression = expression;
+        }
     }
 
-    public class FloorUpdate
+    public class FloorUpdate : BasicRequest
     {
+        // queryable fields
         [JsonProperty("chamber")]
         public string Chamber { get; set; }
 
@@ -36,19 +45,9 @@ namespace Congress
         [JsonProperty("legislator_ids")]
         public string[] LegislatorIds { get; set; }
 
+        // non-queryable fields
         [JsonProperty("update")]
-        public string Update { get; set; }
-
-        public static List<FloorUpdate> All()
-        {
-            string url = string.Format("{0}?apikey={1}", Settings.FloorUpdatesUrl, Settings.Token);
-            return Helpers.Get<FloorUpdateWrapper>(url).Results;
-        }
-
-        public static List<FloorUpdate> Search(FilterBy.FloorUpdate filters)
-        {
-            string url = string.Format("{0}?apikey={1}", Settings.FloorUpdatesUrl, Settings.Token);
-            return Helpers.Get<FloorUpdateWrapper>(Helpers.QueryString(url, filters)).Results;
-        }
+        private string Update { get; set; }
     }
+
 }

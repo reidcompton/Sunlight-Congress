@@ -1,16 +1,24 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
+using System.Linq.Expressions;
 
 namespace Congress
 {
-    public class AmendmentWrapper : BasicReponse
+    public class Amendments : SunlightData<Amendment>
     {
-        [JsonProperty("results")]
-        public List<Amendment> Results { get; set; }
+        public Amendments(string apiKey) : base(apiKey)
+        {
+            _apiKey = apiKey;
+        }
+        public Amendments(string apiKey, Expression expression) : base(apiKey, expression)
+        {
+            _apiKey = apiKey;
+            _expression = expression;
+        }
     }
-    
-    public class Amendment
+
+    public class Amendment : BasicRequest
     {
         [JsonProperty("amendment_id")]
         public string AmendmentId { get; set; }
@@ -49,33 +57,21 @@ namespace Congress
         public DateTime? LastActionAt { get; set; }
 
         [JsonProperty("amends_amendment")]
-        public Amendment AmendsAmendment { get; set; }
+        private Amendment AmendsAmendment { get; set; }
 
         [JsonProperty("amends_bill")]
-        public Bill AmendsBill { get; set; }
+        private Bill AmendsBill { get; set; }
 
         [JsonProperty("sponsor")]
-        public Legislator Sponsor { get; set; }
+        private Legislator Sponsor { get; set; }
 
         [JsonProperty("purpose")]
-        public string Purpose { get; set; }
+        private string Purpose { get; set; }
 
         [JsonProperty("description")]
-        public string Description { get; set; }
+        private string Description { get; set; }
 
         [JsonProperty("actions")]
-        public Action[] Actions { get; set; }
-
-        public static List<Amendment> All()
-        {
-            string url = string.Format("{0}?apikey={1}", Settings.AmendmentsUrl, Settings.Token);
-            return Helpers.Get<AmendmentWrapper>(url).Results;
-        }
-
-        public static List<Amendment> Search(FilterBy.Amendment filters)
-        {
-            string url = string.Format("{0}?apikey={1}", Settings.AmendmentsUrl, Settings.Token);
-            return Helpers.Get<AmendmentWrapper>(Helpers.QueryString(url, filters)).Results;
-        }
+        private Action[] Actions { get; set; }
     }
 }

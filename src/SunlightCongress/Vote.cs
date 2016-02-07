@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq.Expressions;
 
 namespace Congress
 {
-    public class VoteWrapper : BasicReponse
+    public class Votes : SunlightData<Vote>
     {
-        [JsonProperty("results")]
-        public List<Vote> Results { get; set; }
+        public Votes(string apiKey) : base(apiKey)
+        {
+            _apiKey = apiKey;
+        }
+        public Votes(string apiKey, Expression expression) : base(apiKey, expression)
+        {
+            _apiKey = apiKey;
+            _expression = expression;
+        }
     }
 
-    public class Vote
+    public class Vote : BasicRequest
     {
+        // queryable fields
         [JsonProperty("roll_id")]
         public string RollId { get; set; }
 
@@ -51,45 +60,34 @@ namespace Congress
         [JsonProperty("breakdown")]
         public Breakdown Breakdown { get; set; }
 
+
+        // non-queryable fields
         [JsonProperty("question")]
-        public string Question { get; set; }
+        private string Question { get; set; }
 
         [JsonProperty("source")]
-        public string Source { get; set; }
+        private string Source { get; set; }
 
         [JsonProperty("bill")]
-        public Bill Bill { get; set; }
+        private Bill Bill { get; set; }
 
         [JsonProperty("nomination")]
-        public Nomination Nomination { get; set; }
+        private Nomination Nomination { get; set; }
 
         [JsonProperty("voter_ids")]
-        public KeyValuePair<string, string> VoterIds { get; set; }
+        private KeyValuePair<string, string> VoterIds { get; set; }
 
         [JsonProperty("voters")]
-        public Voters Voters { get; set; }
-
-        public static List<Vote> All()
-        {
-            string url = string.Format("{0}?apikey={1}", Settings.VotesUrl, Settings.Token);
-            return Helpers.Get<VoteWrapper>(url).Results;
-        }
-
-        public static List<Vote> Search(FilterBy.Vote filters)
-        {
-            string url = string.Format("{0}?apikey={1}", Settings.VotesUrl, Settings.Token);
-            return Helpers.Get<VoteWrapper>(Helpers.QueryString(url, filters)).Results;
-        }
-
+        private Voters Voters { get; set; }
     }
 
     public class Breakdown
     {
-        [JsonProperty("breakdown")]
-        public Tuple<string, Total> Total { get; set; }
+        [JsonProperty("total")]
+        public Total Total { get; set; }
 
         [JsonProperty("party")]
-        public Tuple<string, Total> Party { get; set; }
+        public Party Party { get; set; }
     }
 
     public class Total
@@ -107,14 +105,26 @@ namespace Congress
         public int? Present { get; set; }
     }
 
+    public class Party
+    {
+        [JsonProperty("R")]
+        public Total Republican { get; set; }
+
+        [JsonProperty("D")]
+        public Total Democrat { get; set; }
+
+        [JsonProperty("I")]
+        public Total Independent { get; set; }
+    }
+    
     public class Voters
     {
-        public List<Tuple<string, Voter>> Voter { get; set; }
+        private List<Tuple<string, Voter>> Voter { get; set; }
     }
 
     public class Voter
     {
-        public string Vote { get; set; }
-        public Legislator VoterInfo { get; set; }
+        private string Vote { get; set; }
+        private Legislator VoterInfo { get; set; }
     }
 }

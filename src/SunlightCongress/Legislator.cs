@@ -1,26 +1,52 @@
 ﻿using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Congress
 {
-
-    public class LegislatorWrapper : BasicReponse
+    public class Legislators : SunlightData<Legislator>
     {
-        [JsonProperty("results")]
-        public List<Legislator> Results { get; set; }
+        public Legislators(string apiKey) : base(apiKey)
+        {
+            _apiKey = apiKey;
+        }
+        public Legislators(string apiKey, Expression expression) : base(apiKey, expression)
+        {
+            _apiKey = apiKey;
+            _expression = expression;
+        }
     }
 
-    public class Legislator
+    public class Legislator : BasicRequest
     {
+        // queryable fields
+        [JsonProperty("zip")]
+        public int? Zip { get; set; }
+
+        [JsonProperty("longitude")]
+        public double? Longitude { get; set; }
+
+        [JsonProperty("latitude")]
+        public double? Latitude { get; set; }
+
+        [JsonProperty("birthday")]
+        public DateTime? Birthday { get; set; }
+
+        [JsonProperty("term_end")]
+        public DateTime? TermEnd { get; set; }
+
+        [JsonProperty("term_start")]
+        public DateTime? TermStart { get; set; }
+
         [JsonProperty("aliases")]
-        public string[] Aliases { get; set; }
+        public string Aliases { get; set; }
 
         [JsonProperty("bioguide_id")]
         public string BioguideID { get; set; }
 
         [JsonProperty("campaign_twitter_ids")]
-        public string[] CampaignTwitterIds { get; set; }
+        public string CampaignTwitterIds { get; set; }
 
         [JsonProperty("chamber")]
         public string Chamber { get; set; }
@@ -97,82 +123,50 @@ namespace Congress
         [JsonProperty("votesmart_id")]
         public int? VoteSmartId { get; set; }
 
+        // non-queryable fields
         [JsonProperty("facebook_id")]
-        public string FacebookId { get; set; }
+        private string FacebookId { get; set; }
 
         [JsonProperty("fax")]
-        public string Fax { get; set; }
-        
-        [JsonProperty("birthday")]
-        public DateTime? Birthday { get; set; }
+        private string Fax { get; set; }
 
         [JsonProperty("office")]
-        public string Office { get; set; }
+        private string Office { get; set; }
 
         [JsonProperty("phone")]
-        public string Phone { get; set; }
+        private string Phone { get; set; }
 
         [JsonProperty("terms")]
-        public Term[] Terms { get; set; }
+        private Term[] Terms { get; set; }
 
         [JsonProperty("website")]
-        public string Website { get; set; }
+        private string Website { get; set; }
 
         [JsonProperty("youtube_id")]
-        public string YouTubeId { get; set; }
-
-        [JsonProperty("term_end")]
-        public DateTime? TermEnd { get; set; }
-
-        [JsonProperty("term_start")]
-        public DateTime? TermStart { get; set; }
-        
-        public static List<Legislator> All()
-        {
-            string url = string.Format("{0}?apikey={1}", Settings.LegislatorsUrl, Settings.Token);
-            return Helpers.Get<LegislatorWrapper>(url).Results;
-        }
-
-        public static List<Legislator> Search(int zip)
-        {
-            string url = string.Format("{0}?zip={1}&apikey={2}", Settings.LegislatorsLocateUrl, zip, Settings.Token);
-            return Helpers.Get<LegislatorWrapper>(url).Results;
-        }
-
-        public static List<Legislator> Search(double latitude, double longitude)
-        {
-            string url = string.Format("{0}?latitude={1}&longitude={2}&apikey={3}", Settings.LegislatorsLocateUrl, latitude, longitude, Settings.Token);
-            return Helpers.Get<LegislatorWrapper>(url).Results;
-        }
-        
-        public static List<Legislator> Search(FilterBy.Legislator filters)
-        {
-            string url = string.Format("{0}?apikey={1}", Settings.LegislatorsUrl, Settings.Token);
-            return Helpers.Get<LegislatorWrapper>(Helpers.QueryString(url, filters)).Results;
-        }
+        private string YouTubeId { get; set; }
     }
 
     public class Term
     {
         [JsonProperty("start")]
-        public DateTime? Start { get; set; }
+        private DateTime? Start { get; set; }
 
         [JsonProperty("end")]
-        public DateTime? End { get; set; }
+        private DateTime? End { get; set; }
 
         [JsonProperty("state")]
-        public string State { get; set; }
+        private string State { get; set; }
 
         [JsonProperty("party")]
-        public string Party { get; set; }
+        private string Party { get; set; }
 
         [JsonProperty("class")]
-        public int? Class { get; set;}
+        private int? Class { get; set;}
 
         [JsonProperty("title")]
-        public string Title { get; set; }
+        private string Title { get; set; }
 
         [JsonProperty("chamber")]
-        public string Chamber { get; set; }
+        private string Chamber { get; set; }
     }
 }

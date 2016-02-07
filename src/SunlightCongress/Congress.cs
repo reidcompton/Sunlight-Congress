@@ -1,28 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Congress
 {
     public class Congress
     {
-        public Legislator[] Legislators { get; set; }
-        public Bill[] Bills { get; set; }
-
-        private Congress _congress = new Congress();
-        public Congress GetLegislators()
+        private static string _apiKey { get; set; }
+        public Congress(string apiKey)
         {
-            this.Legislators = Legislator.Search(60657).ToArray();
-            return this;
+            _apiKey = apiKey;
+            this.Amendments = new Amendments(apiKey);
+            this.Bills = new Bills(apiKey);
+            this.Committees = new Committees(apiKey);
+            this.CongressionalDocuments = new CongressionalDocuments(apiKey);
+            this.Districts = new Districts(apiKey);
+            this.Documents = new Documents(apiKey);
+            this.FloorUpdates = new FloorUpdates(apiKey);
+            this.Hearings = new Hearings(apiKey);
+            this.Legislators = new Legislators(apiKey);
+            this.Nominations = new Nominations(apiKey);
+            this.UpcomingBills = new UpcomingBills(apiKey);
+            this.Votes = new Votes(apiKey);
         }
 
-        public Congress GetBills()
-        {
-            this.Bills = Bill.Search(new FilterBy.Bill() {
-                SponsorId = new StringFilter(this.Legislators.Select(x => x.BioguideID).ToArray())
-            }).ToArray();
-            return this;
-        }
+        public Amendments Amendments { get; }
+        public Bills Bills{ get; set; }
+        public Committees Committees { get; set; }
+        public CongressionalDocuments CongressionalDocuments { get; set; }
+        public Districts Districts { get; set; }
+        public Documents Documents { get; set; }
+        public FloorUpdates FloorUpdates { get; set; }
+        public Hearings Hearings { get; set; }
+        public Legislators Legislators { get; set; }
+        public Nominations Nominations { get; set; }
+        public UpcomingBills UpcomingBills { get; set; }
+        public Votes Votes { get; set; }
     }
 }
