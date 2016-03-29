@@ -41,6 +41,7 @@ Here's a few more examples -
 ```Legislator[] q = congress.Legislators.Where(x => x.Zip == 90210).ToArray();```
 
 // all bills containing the following phrase
+
 ```Bill[] e = congress.Bills.Where(x => x.Query == "To authorize the expansion of an existing hydroelectric project.").ToArray();```
 
 Many more examples in the [Example.cs]() file
