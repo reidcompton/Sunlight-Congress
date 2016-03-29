@@ -10,7 +10,7 @@ http://sunlightfoundation.com/api/accounts/register/
 
 
 ### Creating your client
-`Congress.Congress client = new Congress.Congress(Settings.SunlightCongressApiKey);`
+`Congress client = new Congress("Your Sunlight Foundation API Key");`
 
 ##### Your client contains 12 queryable objects
 - Amendments
@@ -30,24 +30,35 @@ http://sunlightfoundation.com/api/accounts/register/
 ### Examples
 - Let's get all of the Senate votes that happened in 2016
 
-`Vote[] a = client.Votes.Where(x => x.Year >= 2016 && x.Chamber == "senate").ToArray();`
+`Vote[] votes = client.Votes.Where(x => x.Year == 2016 && x.Chamber == "senate").ToArray();`
 
-Once you have this array, you can manipulate it as you could any other IEnumerable, with further Lambda queries on the dataset.
+Once you have this array, you can manipulate it as you could any other IEnumerable, with further Lambda queries on the dataset, for example, here we'll get all the Bill Id's from that previous query, and put them into a string array.
+
+`string[] billIds = votes.Select(x => x.BillId).ToArray();`
 
 - All bills
  
-```Bill[] b = congress.Bills.ToArray();```
+```Bill[] bills = congress.Bills.ToArray();```
 
 - All congressional votes where more than 30 Republicans voted Yea
  
-```Vote[] c = congress.Votes.Where(xy => xy.Breakdown.Party.Republican.Yea > 30).ToArray();```
+```Vote[] republicanVotes = congress.Votes.Where(xy => xy.Breakdown.Party.Republican.Yea > 30).ToArray();```
 
 - All legislators in Beverly Hills
  
-```Legislator[] q = congress.Legislators.Where(x => x.Zip == 90210).ToArray();```
+```Legislator[] bhLegislators = congress.Legislators.Where(x => x.Zip == 90210).ToArray();```
 
 - All bills containing the following phrase
 
-```Bill[] e = congress.Bills.Where(x => x.Query == "To authorize the expansion of an existing hydroelectric project.").ToArray();```
+```Bill[] hydroelectric = congress.Bills.Where(x => x.Query == "To authorize the expansion of an existing hydroelectric project.").ToArray();```
 
-Many more examples in the [Example.cs](https://github.com/reidcompton/Sunlight-Congress/blob/master/src/SunlightCongress/Examples.cs) file
+More examples in the [Example.cs](https://github.com/reidcompton/Sunlight-Congress/blob/master/src/SunlightCongress/Examples.cs) file
+
+### NuGet
+This package is available on NuGet
+
+```
+
+Install-Package Sunlight-Congress
+
+```
