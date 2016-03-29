@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Congress
 {
-    public class Congress
+    public class Client
     {
         private static string _apiKey { get; set; }
-        public Congress(string apiKey)
+        public Client(string apiKey)
         {
             _apiKey = apiKey;
             this.Amendments = new Amendments(apiKey);

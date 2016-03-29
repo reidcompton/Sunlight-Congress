@@ -64,8 +64,6 @@
     "": [
       "Newtonsoft.Json >= 7.0.1"
     ],
-    "DNX,Version=v4.5.1": [
-      "fx/System.Net >= 4.0.0"
-    ]
+    "DNX,Version=v4.5.1": []
   }
 }
