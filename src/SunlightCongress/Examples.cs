@@ -6,10 +6,10 @@ namespace Congress
 {
     public class Tests
     {
-        public static string RunTests()
+        public static void Examples()
         {
 
-            Client congress = new Client("d50b80bc9cfe43be821059b6470e4ab9");
+            Client congress = new Client("Your API Key Here");
 
             // Amendment All
             Amendment[] a = congress.Amendments.ToArray();
@@ -27,36 +27,35 @@ namespace Congress
                             x.SponsorId == "C001070" &&
                             x.AmendsBillId == "sres207-114"
                             ).ToArray();
-            
+
 
             //// Bill All
             Bill[] c = congress.Bills.ToArray();
 
             //// Bill Filter
-            // TODO handle instantiating date inline in query
             Bill[] d = congress.Bills.Where(x =>
-                        //x.BillId == "hr4193-114" &&
-                        //x.BillType == "hr" &&
-                        //x.Chamber == "house" &&
-                        //x.CommitteeIds == new string[] { "HSII", "HSII10", "HSII13" } &&
-                        //x.Congress == 114 &&
-                        //x.CoSponsorsCount == 0 &&
-                        //x.History.Active == false &&
-                        //x.History.AwaitingSignature == false &&
-                        //x.History.Enacted == false &&
-                        //x.History.Vetoed == false &&
-                        //x.IntroducedOn == new DateTime(2015, 12, 8) &&
-                        //x.Number == 4193 &&
-                        x.Sponsor != null
-                        //x.SponsorId == "Y000033"
+                        x.BillId == "hr4193-114" &&
+                        x.BillType == "hr" &&
+                        x.Chamber == "house" &&
+                        x.CommitteeIds == new string[] { "HSII", "HSII10", "HSII13" } &&
+                        x.Congress == 114 &&
+                        x.CoSponsorsCount == 0 &&
+                        x.History.Active == false &&
+                        x.History.AwaitingSignature == false &&
+                        x.History.Enacted == false &&
+                        x.History.Vetoed == false &&
+                        x.IntroducedOn == new DateTime(2015, 12, 8) &&
+                        x.Number == 4193 &&
+                        x.Sponsor != null &&
+                        x.SponsorId == "Y000033"
                     ).ToArray();
-            
+
             //// Bill Search
             Bill[] e = congress.Bills.Where(x => x.Query == "To authorize the expansion of an existing hydroelectric project.").ToArray();
 
             //// Committee All
             Committee[] f = congress.Committees.ToArray();
-           
+
             //// Committee Filter
             Committee[] g = congress.Committees.Where(x =>
                 x.Chamber == "senate" &&
@@ -89,10 +88,10 @@ namespace Congress
 
             //// Hearing All
             Hearing[] n = congress.Hearings.ToArray();
-            
+
             //// Hearing Filter 
             Hearing[] o = congress.Hearings.Where(x =>
-                x.CommitteeId == "HSSM" && 
+                x.CommitteeId == "HSSM" &&
                 x.Chamber == "house" &&
                 x.Dc == true &&
                 x.Congress == 114 &&
@@ -125,10 +124,10 @@ namespace Congress
                 x.State == "IL" &&
                 x.VoteSmartId == 128760
             ).ToArray();
-           
+
             //// Nomination All
             Nomination[] t = congress.Nominations.ToArray();
-            
+
             // Nomination Filter
             Nomination[] u = congress.Nominations.Where(xy =>
                 xy.NominationId == "PN951-02-114" &&
@@ -168,37 +167,6 @@ namespace Congress
 
             // Vote Filter by Breakdown
             Vote[] z = congress.Votes.Where(xy => xy.Breakdown.Party.Republican.Yea > 30).ToArray();
-
-            string result = string.Format(
-                "a: {0}</p><p> b: {1}</p><p> c: {2}</p><p> d: {3}</p><p> e: {4}</p><p> f: {5}</p><p> g: {6}</p><p> h: {7}</p><p> i: {8}</p><p> j: {9}</p><p> k: {10}</p><p> l: {11}</p><p> m: {12}</p><p> n: {13}</p><p> o: {14}</p><p> p: {15}</p><p> q: {16}</p><p> r: {17}</p><p> s: {18}</p><p> t: {19}</p><p> u: {20}</p><p> v: {21}</p><p> w: {22}</p><p> x: {23}</p><p> y: {24} </p><p> z: {25}",
-                a.Length > 0,
-                b.Length > 0,
-                c.Length > 0,
-                d.Length > 0,
-                e.Length > 0,
-                f.Length > 0,
-                g.Length > 0,
-                h.Length > 0,
-                i.Length > 0,
-                j.Length > 0,
-                k.Length > 0,
-                l.Length > 0,
-                m.Length > 0,
-                n.Length > 0,
-                o.Length > 0,
-                p.Length > 0,
-                q.Length > 0,
-                r.Length > 0,
-                s.Length > 0,
-                t.Length > 0,
-                u.Length > 0,
-                v.Length > 0,
-                w.Length > 0,
-                xyz.Length > 0,
-                y.Length > 0,
-                z.Length > 0
-            );
-            return result;
         }
     }
 }
