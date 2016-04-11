@@ -10,7 +10,7 @@ http://sunlightfoundation.com/api/accounts/register/
 
 
 ### Creating your client
-`Congress client = new Congress("Your Sunlight Foundation API Key");`
+`Client client = new Client("Your Sunlight Foundation API Key");`
 
 ##### Your client contains 12 queryable objects
 - Amendments
