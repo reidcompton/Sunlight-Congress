@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SunlightCongress", "src\SunlightCongress\SunlightCongress.xproj", "{56463940-6C69-49A5-8985-C1219FA16E79}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SunlightCongress.UnitTests", "tests\SunlightCongress.UnitTests\SunlightCongress.UnitTests.xproj", "{62CBE95E-FC00-4B89-88BE-9E799219086B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +24,16 @@ Global
 		{56463940-6C69-49A5-8985-C1219FA16E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56463940-6C69-49A5-8985-C1219FA16E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56463940-6C69-49A5-8985-C1219FA16E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62CBE95E-FC00-4B89-88BE-9E799219086B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CBE95E-FC00-4B89-88BE-9E799219086B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62CBE95E-FC00-4B89-88BE-9E799219086B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62CBE95E-FC00-4B89-88BE-9E799219086B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{56463940-6C69-49A5-8985-C1219FA16E79} = {0A451952-2150-4D1F-B0F3-EDADF74ACA8C}
+		{62CBE95E-FC00-4B89-88BE-9E799219086B} = {0A451952-2150-4D1F-B0F3-EDADF74ACA8C}
 	EndGlobalSection
 EndGlobal

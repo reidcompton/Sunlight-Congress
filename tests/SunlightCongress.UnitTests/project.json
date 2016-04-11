@@ -1,0 +1,22 @@
+﻿{
+  "authors": [ "reidcompton" ],
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+  "dependencies": {
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204"
+  },
+  "description": "SunlightCongress Unit Tests",
+  "frameworks": {
+    "dnx451": {
+      "dependencies": {
+        "SunlightCongress": "1.0.0-*"
+      }
+    }
+  },
+  "licenseUrl": "",
+  "projectUrl": "",
+  "tags": [ "" ],
+  "version": "1.0.0-*"
+}
