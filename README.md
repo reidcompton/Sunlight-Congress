@@ -52,7 +52,7 @@ Once you have this array, you can manipulate it as you could any other IEnumerab
 
 ```Bill[] hydroelectric = congress.Bills.Where(x => x.Query == "To authorize the expansion of an existing hydroelectric project.").ToArray();```
 
-More examples in the [Example.cs](https://github.com/reidcompton/Sunlight-Congress/blob/master/src/SunlightCongress/Examples.cs) file
+More examples in the [Tests](https://github.com/reidcompton/Sunlight-Congress/blob/master/tests/SunlightCongress.UnitTests/Tests.cs) file
 
 ### NuGet
 This package is available on NuGet
