@@ -1,6 +1,6 @@
 # Sunlight Congress
 
-Sunlight Congress implements an IQueryable pattern for interacting with the Sunlight Foundation API. 
+Sunlight Congress implements an IQueryable pattern for interacting with the [Sunlight Foundation Congress API](https://sunlightlabs.github.io/congress/). 
 This means that you can use standard Lambda expressions inside of a where clause on each of the queryable objects.
 
 ### Getting Started
